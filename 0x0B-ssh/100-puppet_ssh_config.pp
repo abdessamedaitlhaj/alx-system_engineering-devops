@@ -1,7 +1,12 @@
 # SSH confiiguration file
-file_line {'ssh config'
+file_line {'no pass'
   ensure  => 'present',
   path    => '/etc/ssh/ssh_config',
-  line    => ['PasswordAuthentification no', 'IdentityFile ~/.ssh/school'],
-  replace => 'true'
+  line    => 'PasswordAuthentification no'
 }
+
+file_line {'using specific identity'
+  ensure  => 'present',
+  path    => '/etc/ssh/ssh_config',
+  line    => 'IdentityFile ~/.ssh/school'
+} 
