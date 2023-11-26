@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # SSH confiiguration file
 file_line {'no pass'
   ensure  => 'present',
