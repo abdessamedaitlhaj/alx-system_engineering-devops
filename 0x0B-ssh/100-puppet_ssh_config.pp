@@ -9,4 +9,4 @@ file_line {'using specific identity'
   ensure  => 'present',
   path    => '/etc/ssh/ssh_config',
   line    => 'IdentityFile ~/.ssh/school'
-} 
+}
