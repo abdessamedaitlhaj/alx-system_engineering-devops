@@ -1,5 +1,5 @@
 # SSH confiiguration file
 file {'ssh config'
-  path    => './ssh_config'
-  content => 'Passwordauthentification no\nIdentityFile ~/.ssh/school'
+  path    => '/etc/ssh/ssh_config'
+  line    => ['PasswordAuthentification no', 'IdentityFile ~/.ssh/school']
 }
