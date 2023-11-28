@@ -2,6 +2,6 @@
 # Install a nginx web server
 
 sudo apt-get install nginx
-sudo chown -R $USER:$USER /var/www/html
+sudo chown -R "$USER":"$USER" /var/www/html
 echo "Hello World!" > /var/www/html/*
 curl localhost
