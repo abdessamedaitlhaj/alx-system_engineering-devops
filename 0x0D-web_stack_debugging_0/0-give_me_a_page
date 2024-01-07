@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 # setting a content to display
+sudo service apache2 start
 echo Hello Holberton /var/www/html/index.html
