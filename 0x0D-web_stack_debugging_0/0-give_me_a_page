@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# setting a content to display
+echo Hello Holberton /var/www/html/index.html
