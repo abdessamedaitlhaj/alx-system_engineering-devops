@@ -2,4 +2,4 @@
 # run nginx
 rm /etc/nginx/sites-enabled/default
 sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-sudo systemctl reload nginx
+sudo service nginx restart
