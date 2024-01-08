@@ -2,5 +2,5 @@
 # add a costume header
 sudo apt-get update
 sudo apt-get install -y nginx
-sudo sed -i '47 s/^$/new content/' /etc/nginx/sites-available/default
+sudo sed -i '47 s/^$/add_header X-Served-By $HOSTNAME/' /etc/nginx/sites-available/default
 sudo service nginx restart
