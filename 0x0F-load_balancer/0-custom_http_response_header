@@ -6,5 +6,21 @@ echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
 sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/notfound.html
 sed -i "46i error_page 404 /notfound.html;" /etc/nginx/sites-available/default
-sudo sed -i '/:80 default_server;/a \\tadd_header X-Served-By $HOSTNAME;' /etc/nginx/sites-available/default
+
+echo "server {
+    listen 80;
+    listen [::]:80 default_server;
+    add_header X-Served-By $HOSTNAME;
+    root   /etc/nginx/html;
+    index  index.html index.htm;
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+    error_page 404 /404.html;
+    location /404 {
+      root /etc/nginx/html;
+      internal;
+    }
+}" > /etc/nginx/sites-available/default
+
 sudo service nginx restart
