@@ -7,20 +7,23 @@ sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtu
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/notfound.html
 sed -i "46i error_page 404 /notfound.html;" /etc/nginx/sites-available/default
 
-echo "server {
-    listen 80;
-    listen [::]:80 default_server;
-    add_header X-Served-By $HOSTNAME;
-    root   /etc/nginx/html;
-    index  index.html index.htm;
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-    error_page 404 /404.html;
-    location /404 {
-      root /etc/nginx/html;
-      internal;
-    }
+printf %s "server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        add_header X-Served-By $HOSTNAME
+        error_page 404 /notfound.html;
+
+        server_name _;
+
+        location / {
+                add_header X-Served-By 295648-web-02;
+                try_files $uri $uri/ =404;
+        }
 }" > /etc/nginx/sites-available/default
 
 sudo service nginx restart
