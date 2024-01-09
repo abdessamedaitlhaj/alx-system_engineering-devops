@@ -32,4 +32,5 @@ backend http_back
     server 295648-web-02 100.26.121.23:80 check
 " > /etc/haproxy/haproxy.cfg
 
+sudo systemctl enable haproxy
 sudo service haproxy restart
