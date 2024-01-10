@@ -4,32 +4,15 @@
 sudo apt update
 sudo apt install -y haproxy
 cp /etc/haproxy/haproxy.cfg{,.orig}
-printf % s "
-global
-    log /dev/log local0
-    log /dev/log local1 notice
-    chroot /var/lib/haproxy
-    user haproxy
-    group haproxy
-    daemon
-
-defaults
-    log global
-    mode http
-    option httplog
-    option dontlognull
-    timeout connect 5000
-    timeout client 50000
-    timeout server 50000
-
-frontend http_front
+printf %s "
+frontend haproxy
     bind *:80
+    mode http
     default_backend http_back
-
 backend http_back
     balance roundrobin
     server 295648-web-01 54.144.132.229:80 check
     server 295648-web-02 100.26.121.23:80 check
-" > /etc/haproxy/haproxy.cfg
+" >> /etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart
