@@ -14,13 +14,13 @@ todolist = json.loads(requests.get(url + "todos/").text)
 count = 0
 t_tasks = 0
 for task in todolist:
-    if task["completed"] and task["userId"] == user["id"]:
+    if task.get("completed") and task.get("userId") == user.get("id"):
         count += 1
-    if task["userId"] == user["id"]:
+    if task.get("userId") == user.get("id"):
         t_tasks += 1
 
 print("Employee {} is done with tasks({}/{}):".format(
-    user["name"], count, t_tasks))
+    user.get("name"), count, t_tasks))
 for task in todolist:
-    if task["completed"] and task["userId"] == user["id"]:
-        print(f"\t {task['title']}")
+    if task.get("completed") and task.get("userId") == user.get("id"):
+        print(f"\t {task.get('title')}")
