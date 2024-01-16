@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Retrieve to do list of a given employee"""
+
+import json
 import requests
 import sys
-import json
 
 user_id = sys.argv[1]
 url = "https://jsonplaceholder.typicode.com/"
