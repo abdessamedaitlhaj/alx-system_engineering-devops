@@ -9,16 +9,15 @@ if __name__ == "__main__":
     user_id = sys.argv[1]
     url = "https://jsonplaceholder.typicode.com/"
 
-    user = requests.get(url + "users/" + user_id).json()
-    todolist = requests.get(f"{url}todos", params={"userId": user_id}).json()
-
-    file_name = user_id + ".JSON"
+    user = json.loads(requests.get(url + "users/" + user_id).text)
+    todolist = json.loads(requests.get(url + "users/" + user_id + "/todos/").text)
+    file_name = user_id + ".json"
     with open(file_name, mode='w') as f:
         data = [
                 {
-                    "task": task["title"],
-                    "completed": task["completed"],
-                    "username": user["username"],
+                    "task": task.get("title"),
+                    "completed": task.get("completed"),
+                    "username": user.get("username"),
                     }
                 for task in todolist
                 ]
