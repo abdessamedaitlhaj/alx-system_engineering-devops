@@ -19,9 +19,9 @@ if __name__ == "__main__":
         for user in users:
             all_employees.update({user.get("id"): [
                 {
+                    "username": user.get("username"),
                     "task": task.get("title"),
                     "completed": task.get("completed"),
-                    "username": user.get("username"),
                     }
                 for task in todolist
                 ]})
