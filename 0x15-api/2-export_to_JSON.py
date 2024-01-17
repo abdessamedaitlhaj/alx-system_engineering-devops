@@ -16,9 +16,9 @@ if __name__ == "__main__":
     with open(file_name, mode='w') as f:
         data = [
                 {
-                    "task": task.get("title"),
-                    "completed": task.get("completed"),
-                    "username": user.get("username")
+                    "task": task["title"],
+                    "completed": task["completed"],
+                    "username": user["username"],
                     }
                 for task in todolist
                 ]
