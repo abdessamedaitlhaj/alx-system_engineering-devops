@@ -10,13 +10,13 @@ if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
 
     users = json.loads(requests.get(url + "users/").text)
-    todolist = json.loads(requests.get(
-        url + "todos/").text)
     file_name = "todo_all_employees.json"
     with open(file_name, mode='w') as f:
         data = []
         all_employees = {}
         for user in users:
+            todolist = json.loads(requests.get(
+                url + "users/" + str(user.get("id")) + "/todos/").text)
             all_employees.update({user.get("id"): [
                 {
                     "username": user.get("username"),
