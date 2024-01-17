@@ -10,8 +10,7 @@ if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
 
     user = requests.get(url + "users/" + user_id).json()
-    todolist = requests.get(
-        url + "users/" + user_id + "/todos/").json()
+    todolist = requests.get(f"{url}todos", params={"userId": user_id}).json()
 
     file_name = user_id + ".JSON"
     with open(file_name, mode='w') as f:
