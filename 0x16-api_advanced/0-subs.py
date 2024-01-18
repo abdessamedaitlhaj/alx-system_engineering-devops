@@ -11,7 +11,7 @@ def number_of_subscribers(subreddit):
 
     if not subreddit or type(subreddit) is not str:
         return (0)
-    url = "https://www.reddit.com/r/" + subreddit + "/about.json"
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {"User-Agent": "GetSubBot/1.0 by /u/abdessamed"}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
