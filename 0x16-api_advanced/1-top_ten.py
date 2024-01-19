@@ -8,8 +8,8 @@ import requests
 
 def number_of_subscribers(subreddit):
     """Return top 10 new post for a given subreddit"""
-    if subreddit is None or type(subreddit) is not str:
-        print("None")
+    if not subreddit or type(subreddit) is not str:
+        return 0
     url = f"https://www.reddit.com/r/{subreddit}/about.json?limit=10"
     headers = {"User-Agent": "GetTenNewPosts/1.0 by /u/abdessamed"}
 
@@ -20,4 +20,4 @@ def number_of_subscribers(subreddit):
         for p in posts:
             print(p["data"]["title"])
     else:
-        print("None")
+        print(None)
