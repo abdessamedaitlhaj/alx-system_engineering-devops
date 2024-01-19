@@ -8,7 +8,7 @@ import requests
 
 def number_of_subscribers(subreddit):
     """Return number of subscriber of a given subreddit"""
-    if not subreddit:
+    if not subreddit or type(subreddit) is not str:
         return 0
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {'User-Agent': 'GetSubscribers'}
