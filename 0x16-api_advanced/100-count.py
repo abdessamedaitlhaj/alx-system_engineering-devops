@@ -1,15 +1,17 @@
 #!/usr/bin/python3
 """
-Returns a list containing the titles of all hot articles
-for a given subreddit
+Prints a sorted count of given keywords
 """
 import requests
 
 
-def recurse(subreddit, hot_list=[], after=None):
-    """Returns a list containing the titles of all hot articles"""
+def count_words(subreddit, word_list, count_keys=None, after=None):
+    """Prints a sorted count of given keywords"""
     if not subreddit or type(subreddit) is not str:
         return 0
+
+    if not count_keys:
+        return None
 
     url = f"https://www.reddit.com/r/{subreddit}/about.json?limit=10"
     headers = {"User-Agent": "GetTenNewPosts/1.0 by /u/abdessamed"}
@@ -21,12 +23,18 @@ def recurse(subreddit, hot_list=[], after=None):
         data = response.json()
         posts = data.get("data").get("children")
         for p in posts:
-            hot_list.append(p.get("data").get("title"))
+            t = p.get("data").get("title").lower()
+
+            for w in word_list:
+                if w.lower() in t:
+                    count_keys[w] = count_keys.get(w, 0) + 1
 
         after = data.get("data").get("after")
         if after:
-            recurse(subreddit, hot_list, after)
+            recurse(subreddit, word_list, count_keys, after)
         else:
-            return hot_list
+            result = count_keys.keys().sort()
+            for k, v in result:
+                print(f"{k}: {v}")
     else:
         return None
