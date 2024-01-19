@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Returns the number of subscribers
+Returns top 10 new post
 for a given subreddit
 """
 import requests
