@@ -1,22 +1,22 @@
 #!/usr/bin/python3
-"""0-sub"""
-
+"""
+Returns the number of subscribers
+for a given subreddit
+"""
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """return total subscribers for a given subreddit"""
-
+    """Return number of subscriber of a given subreddit"""
+    if not subreddit or type(subreddit) is not str:
+        return 0
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {"User-Agent": "My-Agent"}
-    allow_redirects = False
-    response = requests.get(
-            url, headers=headers, allow_redirects=allow_redirects)
+    headers = {'User-Agent': 'GetSubscribers'}
+    response = requests.get(url, headers=headers, allow_redirects=False)
     if response.status_code == 200:
         try:
             data = response.json()
-            subscribers_count = data.get("data").get("subscribers")
-            return subscribers_count
+            return data.get("data").get("subscribers")
         except KeyError:
             return 0
     else:
