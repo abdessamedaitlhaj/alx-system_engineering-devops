@@ -2,7 +2,7 @@
 ### Issue Summary
 The outage started today at 8 PM (GMT + 1) and was fixed and ended at 10 PM (GMT + 1). The outage takes the server down which leads to inaccessible services or content in the server and the users will not get the issue same as technical team, so they will have bad experience, and 100% that willing to interact with the server in the meantime will receive an error. The root cause is that the server receives too many requests in a short time.
 ### Timeline
-+ The outage was detected one hour after it’s ended
++ The outage was detected one hour after it’s ended.
 + The team was able to find and notice the issue from customers complaining about messages received via emails saying that they are not able to access the web site of our application.
 + We investigate and check our servers for potential errors that caused the problem, we check the logs area and find out that servers deal with a lot of requests in specific duration of time which crash our server.
 + Firstly after we noticed the error we inspected some settings and configuration files, database connection issues.
